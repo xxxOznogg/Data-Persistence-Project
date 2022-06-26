@@ -57,9 +57,10 @@ public class BoardManager : MonoBehaviour
     {
         if (!m_Started)
         {
+            AddPoint(0);
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log("Space pressed");
+    
                 m_Started = true;
                 float randomDirection = Random.Range(-1.0f, 1.0f);
                 Vector3 forceDir = new Vector3(randomDirection, 1, 0);
@@ -81,7 +82,7 @@ public class BoardManager : MonoBehaviour
     void AddPoint(int point)
     {
         m_Points += point;
-        ScoreText.text = $"Score : {m_Points}";
+        ScoreText.text = $"Player: {MainManager.Instance.PlayerName}  Score : {m_Points}";
     }
 
     public void GameOver()
