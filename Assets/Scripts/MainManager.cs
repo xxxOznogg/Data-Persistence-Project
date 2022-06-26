@@ -34,6 +34,11 @@ public class MainManager : MonoBehaviour
 
         //otherwise, create a MainManager instance;
         Instance = this;
+        /* this.BrickPrefab = BrickPrefab;
+        this.LineCount = LineCount;
+        this.Ball = Ball; */
+
+
         DontDestroyOnLoad(gameObject);
 
      
@@ -55,11 +60,13 @@ public class MainManager : MonoBehaviour
                 var brick = Instantiate(BrickPrefab, position, Quaternion.identity);
                 brick.PointValue = pointCountArray[i];
                 brick.onDestroyed.AddListener(AddPoint);
+                brick.transform.SetParent(MainManager.Instance.transform);
             }
         }
-
-           SceneManager.LoadScene(0);
     }
+
+           
+   
 
     private void Update()
     {
@@ -96,4 +103,6 @@ public class MainManager : MonoBehaviour
         m_GameOver = true;
         GameOverText.SetActive(true);
     }
+
+    
 }
