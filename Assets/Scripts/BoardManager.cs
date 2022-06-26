@@ -22,18 +22,17 @@ public class BoardManager : MonoBehaviour
     
 
     private void Awake(){
-        //create a singleton MainManager
 
-        if(Instance!= null){
-            Destroy(Instance);
+        if(Instance == null){
+            Instance = this;
             return;
         }
-        Instance = this;
+       
         DontDestroyOnLoad(gameObject);
 
     }
 
-    // Start is called before the first frame update
+
     void Start()
     {
         const float step = 0.6f;
