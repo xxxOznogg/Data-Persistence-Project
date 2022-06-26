@@ -29,7 +29,7 @@ public class MenuUIHandler : MonoBehaviour
     public void StartNew()
     {
         SceneManager.LoadScene(1);
-        BoardManager.Instance.m_Started = false;
+        
     }
 
     public void Exit(){
