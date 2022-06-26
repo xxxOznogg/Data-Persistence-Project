@@ -14,9 +14,12 @@ public class MenuUIHandler : MonoBehaviour
 {
     public TextMeshProUGUI PlayerName;
 
-    public void NewPlayerName(string PlayerName)
+
+
+
+    public void NewPlayerName()
     {
-        MainManager.Instance.PlayerName = PlayerName;
+        MainManager.Instance.PlayerName = PlayerName.text;
     }
  
 
