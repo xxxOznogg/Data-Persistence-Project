@@ -156,8 +156,10 @@ MonoBehaviour:
   LineCount: 6
   Ball: {fileID: 177912862}
   ScoreText: {fileID: 188020406}
+  TopScoreText: {fileID: 2078529056}
   GameOverText: {fileID: 474497238}
   m_Started: 0
+  m_Points: 0
   m_GameOver: 0
 --- !u!4 &63413337
 Transform:
@@ -682,6 +684,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerName: test
+  TopScore: 0
 --- !u!4 &566462304
 Transform:
   m_ObjectHideFlags: 0
@@ -1344,7 +1347,7 @@ GameObject:
   - component: {fileID: 2078529057}
   - component: {fileID: 2078529056}
   m_Layer: 5
-  m_Name: ScoreText (1)
+  m_Name: TopScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

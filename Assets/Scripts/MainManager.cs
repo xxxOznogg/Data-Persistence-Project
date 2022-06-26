@@ -10,6 +10,7 @@ public class MainManager : MonoBehaviour
     
     public static MainManager Instance;
     public string PlayerName;
+    public int TopScore;
     //public ScoreList highScores
 
     private void Awake(){
@@ -21,24 +22,43 @@ public class MainManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
-
+        LoadTopScore();
     }
 
   
-
-
-    // Start is called before the first frame update
-    void Start()
+    [System.Serializable]
+    class SaveData
     {
-        
+        public string PlayerName;
+        public int TopScore;
     }
 
-           
-   
-
-    private void Update()
+    public void SaveTopScore()
     {
+        SaveData data = new SaveData();
+        data.PlayerName = PlayerName;
+        data.TopScore = BoardManager.Instance.m_Points;
+
+        string json = JsonUtility.ToJson(data);
+        
+        Debug.Log(Application.persistentDataPath);
+        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
        
+    }
+
+    public void LoadTopScore()
+    {
+        string path = Application.persistentDataPath + "/savefile.json";
+
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            SaveData data = JsonUtility.FromJson<SaveData>(json);
+
+            PlayerName = data.PlayerName;
+            TopScore = data.TopScore;
+            
+        }
     }
 
 

@@ -12,11 +12,12 @@ public class BoardManager : MonoBehaviour
     public int LineCount = 6;
     public Rigidbody Ball;
     public Text ScoreText;
+    public Text TopScoreText;
     public GameObject GameOverText;
     public static BoardManager Instance;
     
     public bool m_Started = false;
-    private int m_Points;
+    public int m_Points;
     public bool m_GameOver = false;
 
     
@@ -27,7 +28,7 @@ public class BoardManager : MonoBehaviour
             Instance = this;
             return;
         }
-       
+        
         DontDestroyOnLoad(gameObject);
 
     }
@@ -35,6 +36,8 @@ public class BoardManager : MonoBehaviour
 
     void Start()
     {
+        MainManager.Instance.LoadTopScore();
+        TopScoreText.text = $"Player: {MainManager.Instance.PlayerName} Top Score : {MainManager.Instance.TopScore}";
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
         
@@ -89,7 +92,18 @@ public class BoardManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+        
+        
+
+        if((MainManager.Instance.TopScore < m_Points)||(MainManager.Instance.TopScore == 0))
+        {
+            MainManager.Instance.SaveTopScore();
+            Debug.Log("New Top Score!!! Saving");
+        }
+
+        MainManager.Instance.LoadTopScore();
     }
 
-    
+
+  
 }
