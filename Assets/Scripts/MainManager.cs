@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.IO;
 
 public class MainManager : MonoBehaviour
 {
@@ -18,7 +19,27 @@ public class MainManager : MonoBehaviour
     
     private bool m_GameOver = false;
 
-    
+    public static MainManager Instance;
+    public string PlayerName;
+    //public ScoreList highScores;
+
+    private void Awake(){
+        //create a singleton MainManager
+
+        // if there is already another MainManager, destroy this one
+        if(Instance != null){
+            Destroy(gameObject);
+            return;
+        }
+
+        //otherwise, create a MainManager instance;
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+     
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +57,8 @@ public class MainManager : MonoBehaviour
                 brick.onDestroyed.AddListener(AddPoint);
             }
         }
+
+           SceneManager.LoadScene(0);
     }
 
     private void Update()
