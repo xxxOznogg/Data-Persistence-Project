@@ -15,9 +15,9 @@ public class BoardManager : MonoBehaviour
     public GameObject GameOverText;
     public static BoardManager Instance;
     
-    private bool m_Started = false;
+    public bool m_Started = false;
     private int m_Points;
-    private bool m_GameOver = false;
+    public bool m_GameOver = false;
 
     
 
@@ -66,7 +66,7 @@ public class BoardManager : MonoBehaviour
                 Vector3 forceDir = new Vector3(randomDirection, 1, 0);
                 forceDir.Normalize();
 
-                Ball.transform.SetParent(null);
+                Ball.transform.SetParent(Instance.transform);
                 Ball.AddForce(forceDir * 2.0f, ForceMode.VelocityChange);
             }
         }
